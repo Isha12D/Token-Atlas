@@ -19,6 +19,11 @@ const server = http.createServer(app);
 setupTokenWebSocket(server);
 
 const PORT: number = parseInt(process.env.PORT || "5000", 10);
+
+app.get("/", (req, res) => {
+  res.send("Token Trading Backend is running!");
+});
+
 const MONGO_URI: string | undefined = process.env.MONGO_URI;
 
 if (!MONGO_URI) {
