@@ -1,5 +1,5 @@
 // src/components/token/TokenRow.tsx
-import { ComponentPropsWithoutRef } from "react"
+import { memo, ComponentPropsWithoutRef } from "react"
 import { Token } from "@/lib/types"
 import { TableRow, TableCell } from "@/components/ui/table"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
@@ -12,22 +12,26 @@ type Props = ComponentPropsWithoutRef<"tr"> & {
   onClick?: () => void
 }
 
-export function TokenRow({ token, onClick, ...rest }: Props) {
+export const TokenRow = memo(function TokenRow({
+  token,
+  onClick,
+  ...rest
+}: Props) {
   const isPositive = token.priceChange >= 0
 
   return (
     <TableRow
       onClick={onClick}
-      className="hover:bg-muted transition-colors cursor-pointer"
-      {...rest} // spread any additional props
+      className="h-12 cursor-pointer transition-colors hover:bg-muted"
+      {...rest}
     >
-      {/* Token Name with Tooltip */}
-      <TableCell>
+      {/* Token */}
+      <TableCell className="px-4 font-medium">
         <Tooltip>
           <TooltipTrigger asChild>
-            <div className="font-medium">
+            <div>
               {token.name}
-              <span className="ml-2 text-muted-foreground text-sm">
+              <span className="ml-2 text-xs text-muted-foreground">
                 {token.symbol}
               </span>
             </div>
@@ -37,49 +41,45 @@ export function TokenRow({ token, onClick, ...rest }: Props) {
       </TableCell>
 
       {/* Price */}
-      <TableCell
-        className={cn(
-            "transition-colors duration-500",
-            isPositive ? "text-green-500" : "text-red-500"
-        )}
-        >
-        {isPositive ? "+" : ""}
-        {token.priceChange}%
-        </TableCell>
-
-        <TableCell
-        className="transition-colors duration-500"
-        >
+      <TableCell className="px-4 text-sm transition-colors duration-500">
         ${token.price.toFixed(2)}
       </TableCell>
 
-
       {/* 24h Change */}
-      <TableCell className={cn(isPositive ? "text-green-500" : "text-red-500")}>
+      <TableCell
+        className={cn(
+          "px-4 text-sm transition-colors duration-500",
+          isPositive ? "text-green-500" : "text-red-500"
+        )}
+      >
         {isPositive ? "+" : ""}
         {token.priceChange}%
       </TableCell>
 
-      {/* Volume */}
-      <TableCell>${token.volume.toLocaleString()}</TableCell>
+      {/* Volume (hide on small screens) */}
+      <TableCell className="hidden md:table-cell px-4 text-sm">
+        ${token.volume.toLocaleString()}
+      </TableCell>
 
-      {/* Market Cap */}
-      <TableCell>${token.marketCap.toLocaleString()}</TableCell>
+      {/* Market Cap (hide on small screens) */}
+      <TableCell className="hidden lg:table-cell px-4 text-sm">
+        ${token.marketCap.toLocaleString()}
+      </TableCell>
 
-      {/* Popover Actions */}
-      <TableCell>
+      {/* Actions */}
+      <TableCell className="px-4">
         <Popover>
-          <PopoverTrigger className="text-sm text-primary underline">
+          <PopoverTrigger className="text-xs text-primary underline">
             Actions
           </PopoverTrigger>
-          <PopoverContent className="w-32">
+          <PopoverContent className="w-28">
             <div className="flex flex-col gap-2 text-sm">
-              <button className="hover:text-primary">View</button>
-              <button className="hover:text-primary">Trade</button>
+              <button>View</button>
+              <button>Trade</button>
             </div>
           </PopoverContent>
         </Popover>
       </TableCell>
     </TableRow>
   )
-}
+})
