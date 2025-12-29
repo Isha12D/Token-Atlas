@@ -6,8 +6,8 @@ A high-performance, pixel-perfect replica of **Axiom Trade’s Token Discovery T
 
 ## 🚀 Live Demo
 
-- **Frontend (Vercel):** <ADD_VERCEL_LINK_HERE>
-- **Backend (REST + WebSocket):** <ADD_BACKEND_LINK_OR_LOCALHOST_NOTE>
+- **Frontend (Vercel):** <https://token-atlas.vercel.app/>
+- **Backend (REST + WebSocket):** <https://token-atlas-2.onrender.com/>
 
 ---
 
