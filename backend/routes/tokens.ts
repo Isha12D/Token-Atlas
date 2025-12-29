@@ -1,5 +1,5 @@
 import express, { Request, Response, Router } from "express";
-import { Token, IToken } from "../models/Token.js";
+import { Token, IToken } from "../models/Token";
 
 const router: Router = express.Router();
 

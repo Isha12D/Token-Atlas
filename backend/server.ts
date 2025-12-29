@@ -4,8 +4,8 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 
-import tokenRoutes from "./routes/tokens.js";
-import { setupTokenWebSocket } from "./ws/tokenWebSocket.js";
+import tokenRoutes from "./routes/tokens";
+import { setupTokenWebSocket } from "./ws/tokenWebSocket";
 
 dotenv.config();
 

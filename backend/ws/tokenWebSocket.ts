@@ -1,6 +1,6 @@
 import { WebSocketServer } from "ws";
 import type WebSocket from "ws";
-import { Token, IToken } from "../models/Token.js";
+import { Token, IToken } from "../models/Token";
 import type http from "http";
 
 export function setupTokenWebSocket(server: http.Server): void {

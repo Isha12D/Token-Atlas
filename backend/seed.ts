@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import { Token } from "./models/Token.js";
+import { Token } from "./models/Token";
 
 dotenv.config();
 
