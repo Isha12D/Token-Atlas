@@ -37,7 +37,22 @@ export function TokenRow({ token, onClick, ...rest }: Props) {
       </TableCell>
 
       {/* Price */}
-      <TableCell>${token.price.toFixed(2)}</TableCell>
+      <TableCell
+        className={cn(
+            "transition-colors duration-500",
+            isPositive ? "text-green-500" : "text-red-500"
+        )}
+        >
+        {isPositive ? "+" : ""}
+        {token.priceChange}%
+        </TableCell>
+
+        <TableCell
+        className="transition-colors duration-500"
+        >
+        ${token.price.toFixed(2)}
+      </TableCell>
+
 
       {/* 24h Change */}
       <TableCell className={cn(isPositive ? "text-green-500" : "text-red-500")}>
