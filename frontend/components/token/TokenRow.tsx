@@ -12,6 +12,8 @@ type Props = ComponentPropsWithoutRef<"tr"> & {
   onClick?: () => void
 }
 
+const isMobile = typeof window !== "undefined" && window.innerWidth<640
+
 export const TokenRow = memo(function TokenRow({
   token,
   onClick,
@@ -20,24 +22,30 @@ export const TokenRow = memo(function TokenRow({
   const isPositive = token.priceChange >= 0
 
   return (
+    
     <TableRow
       onClick={onClick}
-      className="h-12 cursor-pointer transition-colors hover:bg-muted"
+      className="h-12 cursor-pointer transition-colors text-gray-300 border-gray-600 hover:bg-white/5"
       {...rest}
     >
       {/* Token */}
       <TableCell className="px-4 font-medium">
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <div>
-              {token.name}
-              <span className="ml-2 text-xs text-muted-foreground">
-                {token.symbol}
-              </span>
-            </div>
-          </TooltipTrigger>
-          <TooltipContent>Click to view token details</TooltipContent>
-        </Tooltip>
+        {isMobile ? (
+          <div>
+            {token.name}
+            <span className="ml-2 text-xs text-slate-400">{token.symbol}</span>
+          </div>
+        ) : (
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div>
+                {token.name}
+                <span className="ml-2 text-xs text-slate-400">{token.symbol}</span>
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>Click to view token details</TooltipContent>
+          </Tooltip>
+        )}
       </TableCell>
 
       {/* Price */}
@@ -69,7 +77,7 @@ export const TokenRow = memo(function TokenRow({
       {/* Actions */}
       <TableCell className="px-4">
         <Popover>
-          <PopoverTrigger className="text-xs text-primary underline">
+          <PopoverTrigger className="text-xs underline text-gray-300">
             Actions
           </PopoverTrigger>
           <PopoverContent className="w-28">

@@ -123,3 +123,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+.bg-dashboard {
+  background-image: url("https://i.pinimg.com/736x/7b/49/d7/7b49d76261a49a579fe4d9ed43bf4697.jpg"); /* your image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #020617; /* fallback */
+}

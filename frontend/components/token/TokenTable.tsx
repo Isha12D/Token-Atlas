@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState, useCallback } from "react"
-import { mockTokens, simulatePriceUpdate } from "@/lib/mockTokens"
+import { mockTokens, connectTokenWebSocket } from "@/lib/webSocket"
 import { TokenModal } from "./TokenModal"
 import { Token } from "@/lib/types"
 import { Table, TableBody } from "@/components/ui/table"
@@ -23,7 +23,11 @@ export function TokenTable() {
     const loadTimer = setTimeout(() => {
       setTokens(mockTokens)
       setLoading(false)
-      simulatePriceUpdate(mockTokens, setTokens)
+      const disconnect = connectTokenWebSocket(
+        mockTokens,
+        setTokens
+        )
+        return () => disconnect()
     }, 1000)
 
     return () => clearTimeout(loadTimer)
@@ -55,7 +59,7 @@ export function TokenTable() {
         {[...Array(6)].map((_, i) => (
           <div
             key={i}
-            className="h-12 w-full rounded bg-muted animate-pulse"
+            className="h-12 w-full rounded-md bg-white/5 animate-pulse"
           />
         ))}
       </div>
@@ -63,7 +67,7 @@ export function TokenTable() {
   }
 
   return (
-    <div className="rounded-xl border bg-card overflow-x-auto">
+    <div className="rounded-2xl bg-transparent overflow-x-auto">
       <Table>
         <TokenHeader onSort={handleSort} />
         <TableBody>
