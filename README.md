@@ -13,7 +13,7 @@ A high-performance, pixel-perfect replica of **Axiom Trade’s Token Discovery T
 
 ## 🎥 Demo Video (1–2 min)
 
-- **YouTube:** <ADD_PUBLIC_YOUTUBE_LINK_HERE>
+- **YouTube:** <https://youtu.be/Bm09x8n8g-I>
 
 The video demonstrates:
 - Loading skeletons & shimmer
